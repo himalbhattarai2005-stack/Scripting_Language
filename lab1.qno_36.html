@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Cookie Manager</h3>
+
+Key: <input id="k">
+Value: <input id="v"><br><br>
+
+<button onclick="addC()">a. Add</button>
+<button onclick="getC()">b. Read</button>
+<button onclick="show()">c. All Cookies</button>
+<button onclick="delC()">d. Delete</button>
+<button onclick="clearC()">e. Clear All</button>
+
+<h4>Add</h4>
+<input id="add" readonly>
+
+<h4>Read</h4>
+<input id="read" readonly>
+
+<h4>All Cookies</h4>
+<input id="all" readonly>
+
+<h4>Delete</h4>
+<input id="del" readonly>
+
+<h4>Clear All</h4>
+<input id="clear" readonly>
+
+<script>
+function addC() {
+    document.cookie=k.value+"="+v.value+";path=/";
+    add.value="Cookie Added";
+}
+
+function getC() {
+    var x=document.cookie.match(new RegExp("(^| )"+k.value+"=([^;]+)"));
+    read.value=x?"Value: "+x[2]:"Not found";
+}
+
+function show() {
+    all.value=document.cookie||"None";
+}
+
+function delC() {
+    document.cookie=k.value+"=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+    del.value="Cookie Deleted";
+}
+
+function clearC() {
+    var a=document.cookie.split("; ");
+    for(var i=0;i<a.length;i++)
+        document.cookie=a[i].split("=")[0]+"=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+    clear.value="All Cookies Cleared";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Analog Clock</h3>
+<canvas id="clockCanvas" width="200" height="200"
+style="background:#1b1a1a;border-radius:50%;"></canvas>
+
+<script>
+var c=document.getElementById("clockCanvas"),ctx=c.getContext("2d");
+var r=c.height/2;
+ctx.translate(r,r); r*=.9;
+setInterval(drawClock,1000); drawClock();
+
+function drawClock(){
+ctx.clearRect(-c.width/2,-c.height/2,c.width,c.height);
+ctx.beginPath(); ctx.arc(0,0,r,0,2*Math.PI);
+ctx.fillStyle="white"; ctx.fill();
+
+ctx.fillStyle="black"; ctx.font="bold 15px Arial";
+ctx.textAlign="center"; ctx.textBaseline="middle";
+
+for(var n=1;n<=12;n++){
+ var a=n*Math.PI/6;
+ ctx.fillText(n,Math.sin(a)*r*.78,-Math.cos(a)*r*.78);
+}
+
+for(var i=0;i<12;i++){
+ var a=i*Math.PI/6;
+ ctx.beginPath();
+ ctx.moveTo(Math.sin(a)*r*.88,-Math.cos(a)*r*.88);
+ ctx.lineTo(Math.sin(a)*r*.94,-Math.cos(a)*r*.94);
+ ctx.lineWidth=2; ctx.stroke();
+}
+
+var now=new Date(),h=now.getHours()%12,m=now.getMinutes(),s=now.getSeconds();
+
+drawHand((h+m/60)*Math.PI/6,r*.45,6);
+drawHand((m+s/60)*Math.PI/30,r*.65,4);
+drawHand(s*Math.PI/30,r*.75,2);
+
+ctx.beginPath(); ctx.arc(0,0,4,0,2*Math.PI);
+ctx.fillStyle="black"; ctx.fill();
+}
+
+function drawHand(pos,len,w){
+ctx.beginPath(); ctx.lineWidth=w; ctx.lineCap="round";
+ctx.moveTo(0,0); ctx.rotate(pos);
+ctx.lineTo(0,-len); ctx.stroke(); ctx.rotate(-pos);
+}
+</script>
+</body>
+</html>

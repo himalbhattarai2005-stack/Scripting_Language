@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Check Array Input</h3>
+
+<input type="text" id="userInput" placeholder="e.g. [3,5,5,2] or wondahoyy">
+<button onclick="verifyArray()">Check</button>
+
+<div id="result"></div>
+
+<script>
+function verifyArray() {
+    var input = document.getElementById("userInput").value.trim();
+
+    try {
+        var value = JSON.parse(input);
+
+        if (Array.isArray(value))
+            document.getElementById("result").innerText = input + " is an array";
+        else
+            document.getElementById("result").innerText = input + " is not an array";
+
+    } catch (error) {
+        document.getElementById("result").innerText = input + " is not an array";
+    }
+}
+</script>
+
+</body>
+</html>
