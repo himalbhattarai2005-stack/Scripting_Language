@@ -1,35 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <style>
-    .clock-container {
-      font-family: monospace;
-      font-size: 32px;
-      font-weight: bold;
-      background: #222;
-      color: #0f0;
-      padding: 15px;
-      width: 220px;
-      text-align: center;
-      border-radius: 8px;
-    }
-  </style>
-</head>
 <body>
-  <h3>Digital Clock</h3>
-  <div class="clock-container" id="digitalClock">00 : 00 : 00</div>
+  <h3>Person Account Dashboard</h3>
+  <button onclick="showAccountInfo()">Display Account Info</button>
+  <div id="result"></div>
+
   <script>
-    function updateClock() {
-      var now = new Date();
-      var h = String(now.getHours()).padStart(2, '0');
-      var m = String(now.getMinutes()).padStart(2, '0');
-      var s = String(now.getSeconds()).padStart(2, '0');
+    var personAccount = {
+      firstName: "Himal",
+      lastName: "Bhattarai",
+      incomes: [{ amount: 1000, desc: "Salary" }],
+      expenses: [{ amount: 2000, desc: "Rent" }],
+      
+      addIncome: function(amount, desc) {
+        this.incomes.push({ amount: amount, desc: desc });
+      },
+      addExpense: function(amount, desc) {
+        this.expenses.push({ amount: amount, desc: desc });
+      },
+      totalIncome: function() {
+        var total = 0;
+        for (var i = 0; i < this.incomes.length; i++) {
+          total += this.incomes[i].amount;
+        }
+        return total;
+      },
+      totalExpense: function() {
+        var total = 0;
+        for (var i = 0; i < this.expenses.length; i++) {
+          total += this.expenses[i].amount;
+        }
+        return total;
+      },
+      accountBalance: function() {
+        return this.totalIncome() - this.totalExpense();
+      },
+      accountInfo: function() {
+        return this.firstName + " " + this.lastName + " - Balance: Rs." + this.accountBalance();
+      }
+    };
 
-      document.getElementById("digitalClock").innerText = h + " : " + m + " : " + s;
+    function showAccountInfo() {
+      personAccount.addIncome(1000, "Freelance");
+      personAccount.addExpense(200, "Groceries");
+      
+      document.getElementById("result").innerHTML = 
+        "Account Summary: " + personAccount.accountInfo() + "<br>" +
+        "Total Income: Rs." + personAccount.totalIncome() + "<br>" +
+        "Total Expense: Rs." + personAccount.totalExpense();
     }
-
-    setInterval(updateClock, 1000);
-    updateClock();
   </script>
 </body>
 </html>
