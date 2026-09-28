@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head><title>Country City AJAX</title></head>
+<body>
+<h2>Country and City</h2>
+
+<select id="country" onchange="loadCities()">
+    <option value="">Select Country</option>
+    <option>Nepal</option>
+    <option>India</option>
+    <option>USA</option>
+</select>
+
+<select id="city">
+    <option value="">Select City</option>
+</select>
+
+<script>
+function loadCities() {
+    let country = document.getElementById("country").value;
+    let city = document.getElementById("city");
+
+    if (!country) {
+        city.innerHTML = "<option value=''>Select City</option>";
+        return;
+    }
+
+    let x = new XMLHttpRequest();
+
+    x.onload = function() {
+        if (this.status == 200) {
+            city.innerHTML = "<option value=''>Select City</option>";
+
+            JSON.parse(this.responseText).forEach(c => {
+                city.innerHTML += `<option>${c}</option>`;
+            });
+        }
+    };
+
+    x.open("GET", "q14_get_cities.php?country=" + encodeURIComponent(country));
+    x.send();
+}
+</script>
+</body>
+</html>

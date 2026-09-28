@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Avatar",
+        "poster": "https://m.media-amazon.com/images/M/MV5BMTYwNTk1MDY0NF5BMl5BanBnXkFtZTcwOTAwMDAzMw@@._V1_.jpg",
+        "year": 2009,
+        "genre": "Action",
+        "rating": 7.8,
+        "director": "James Cameron",
+        "country": "USA",
+        "language": "English",
+        "actors": "Sam Worthington, Zoe Saldana"
+    },
+    {
+        "id": 2,
+        "title": "Titanic",
+        "poster": "https://m.media-amazon.com/images/M/MV5BOTYwNzg2OTM1NF5BMl5BanBnXkFtZTcwMzk0MjQzMQ@@._V1_.jpg",
+        "year": 1997,
+        "genre": "Romance",
+        "rating": 7.9,
+        "director": "James Cameron",
+        "country": "USA",
+        "language": "English",
+        "actors": "Leonardo DiCaprio, Kate Winslet"
+    },
+    {
+        "id": 3,
+        "title": "Joker",
+        "poster": "https://m.media-amazon.com/images/M/MV5BMTg1NDM2NTc2OV5BMl5BanBnXkFtZTgwMDg0NzE5NjM@._V1_.jpg",
+        "year": 2019,
+        "genre": "Crime",
+        "rating": 8.3,
+        "director": "Todd Phillips",
+        "country": "USA",
+        "language": "English",
+        "actors": "Joaquin Phoenix, Robert De Niro"
+    }
+]
